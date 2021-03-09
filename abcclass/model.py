@@ -31,7 +31,7 @@ class Model(metaclass=ABCMeta):
         self.model = None
         
     @abstractmethod    
-    def train(self, train_X: pd.DataFrame, train_y: pd.Series, 
+    def fit(self, train_X: pd.DataFrame, train_y: pd.Series, 
               val_X: Optional[pd.DataFrame]=None,  val_y: Optional[pd.DataFrame]=None) -> None:
         
         """training and saving your model
