@@ -11,6 +11,15 @@ sns.set()
 
 # calculate skewness
 def calc_skew(data: Union[np.ndarray, pd.Series]) -> (float, str):
+    """
+    データの歪度を計算する．
+
+    Parameters
+    ----------
+    data : pd.Series, np.ndarray etc.
+        歪度を計算したいデータ
+    """
+
     if data.dtype not in [int, float]:
         raise Exception("Data variable type must be numeric type as int, float etc.")
 
@@ -33,8 +42,18 @@ def calc_skew(data: Union[np.ndarray, pd.Series]) -> (float, str):
 
     return value, skew
 
+
 # calculate kurtosis
 def calc_kurto(data: Union[np.ndarray, pd.Series]) -> float:
+    """
+    データの尖度を計算する．
+
+    Parameters
+    ----------
+    data : pd.Series, np.ndarray etc.
+        尖度を計算したいデータ
+    """
+
     if data.dtype not in [int, float]:
         raise Exception("Data variable type must be numeric type as int, float etc.")
 
@@ -56,6 +75,17 @@ def calc_kurto(data: Union[np.ndarray, pd.Series]) -> float:
 
 def all_stats(data: Union[np.ndarray, pd.Series],
               is_return: bool = False) -> Optional[List]:
+    """
+    データの統計量（平均，標準偏差，歪度，尖度）を計算する．
+
+    Parameters
+    ----------
+    data : pd.Series, np.ndarray etc.
+        統計量を計算したいデータ．
+    is_return : bool
+        計算した統計量を返すかどうか決めるフラグ(default=False)
+    """
+
     if data.dtype not in [int, float]:
         raise Exception("Data variable type must be numeric type as int, float etc.")
 
@@ -80,6 +110,17 @@ def all_stats(data: Union[np.ndarray, pd.Series],
 
 def dist_categorical(data: Union[pd.DataFrame, pd.Series],
                      feature_name: str) -> None:
+    """
+    カテゴリ変数のグラフの可視化（円グラフ，棒グラフ）
+
+    Parameters
+    ----------
+    data : pd.DataFrame, pd.Series
+        可視化したいデータ．
+    feature_name : str
+        可視化したいデータの名前．
+    """
+
     if type(data) not in [pd.DataFrame, pd.Series]:
         raise Exception("Data type must be pd.DataFrame or pd.Series")
 
@@ -93,11 +134,36 @@ def dist_categorical(data: Union[pd.DataFrame, pd.Series],
 
 
 def sturges_rule(n: int) -> int:
+    """
+    ヒストグラムを作成する際のビンの数をスタージェスの公式を用いて計算する．
+
+    Parameters
+    ----------
+    n : int
+        データ数．
+
+    Returns
+    -------
+    value : int
+        スタージェスの公式に基づいた最適なビンの数．
+    """
+
     return math.ceil(1 + np.log2(n))
 
 
 def dist_numerical(data: Union[pd.DataFrame, pd.Series],
                    feature_name: str) -> None:
+    """
+    数値変数のグラフの可視化（ヒストグラム，箱ひげ図）
+
+    Parameters
+    ----------
+    data : pd.DataFrame, pd.Series
+        可視化したいデータ．
+    feature_name : str
+        可視化したいデータの名前．
+    """
+
     if type(data) not in [pd.DataFrame, pd.Series]:
         raise Exception("Data type must be pd.DataFrame or pd.Series")
 
